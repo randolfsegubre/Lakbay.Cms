@@ -1,0 +1,29 @@
+services:
+  # SQL Server (Developer Edition, free) for local dev — Lakbay.Cms and
+  # Lakbay.Booking's databases, per ADR-0005. Neither app runs in this
+  # compose file: both are meant to run natively (`dotnet run`) against
+  # this container for a fast local dev loop (hot reload, debugging).
+  # Adapted from the official `dotnet new umbraco-compose` template,
+  # trimmed to database-only — that template's default also containerizes
+  # the Umbraco app itself, which ADR-0005 deliberately doesn't call for.
+  db:
+    container_name: lakbay_sqlserver
+    build:
+      context: ./Database
+    environment:
+      SA_PASSWORD: ${DB_PASSWORD}
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "1433:1433"
+    volumes:
+      - lakbay_sqlserver_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "bash", "/healthcheck.sh"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+      start_interval: 5s
+
+volumes:
+  lakbay_sqlserver_data:

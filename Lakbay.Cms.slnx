@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Lakbay.Cms.Web/Lakbay.Cms.Web.csproj" />
+  </Folder>
+</Solution>

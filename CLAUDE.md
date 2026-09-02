@@ -30,7 +30,7 @@ real documentation before touching anything.
 
 ## What this repo is
 
-Umbraco 17 (.NET), single solution/startup. Two content trees in one
+Umbraco 18 (.NET), single solution/startup. Two content trees in one
 backoffice: **Content** (pages, landing pages, block-list components) and
 **Products** (holiday/tour records — itinerary, price bands, departure
 dates, inclusions, media, geo, product-line taxonomy). Content nodes
