@@ -1,0 +1,26 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+## Umbraco
+umbraco/Data/
+umbraco/Logs/
+wwwroot/media/
+App_Plugins/**/*.js.map
+appsettings.*.local.json
+
+## Node (Umbraco backoffice / frontend tooling)
+node_modules/
+npm-debug.log*
+
+## OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+## Local secrets — never commit
+*.env
+.env.local
