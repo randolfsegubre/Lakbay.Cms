@@ -39,7 +39,11 @@ call. Exposes both trees via Umbraco's Content Delivery API plus a GraphQL
 layer matching `Lakbay.Contracts`.
 
 **Not this repo's job:** orders, baskets, live availability, or payment —
-those live in `Lakbay.Booking`, on purpose (ADR-0003).
+those live in `Lakbay.Booking`, on purpose (ADR-0003). Also not this
+repo's job: rendering a page. No Razor views for the public site, ever —
+`Lakbay.Web` owns 100% of presentation (ADR-0006). If you're adding a
+`Views/` folder here for anything other than Umbraco's own backoffice,
+stop and re-read that ADR.
 
 ## Local setup
 
