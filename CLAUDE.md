@@ -45,6 +45,13 @@ repo's job: rendering a page. No Razor views for the public site, ever —
 `Views/` folder here for anything other than Umbraco's own backoffice,
 stop and re-read that ADR.
 
+**Block List/Grid element types are a cross-repo contract**
+([ADR-0012](../Lakbay.Docs/docs/adr/ADR-0012-block-rendering-in-react.md)):
+every element type configured here needs a matching React component in
+`Lakbay.Web`'s block registry, and vice versa. Adding a block type in the
+backoffice without coordinating the `Lakbay.Web` side leaves editors able
+to place a block that renders as nothing on the live site.
+
 ## Local setup
 
 Not yet proven — Phase 0 is not complete. Once the Umbraco solution boots
