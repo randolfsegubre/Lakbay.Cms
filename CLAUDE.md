@@ -47,6 +47,11 @@ Not yet proven — Phase 0 is not complete. Once the Umbraco solution boots
 locally, the exact commands go in `Docs/DEVELOPER_HANDBOOK.md` (create
 that file the moment setup actually works, not from memory afterward).
 
+**Database:** SQL Server (Docker, Developer Edition) locally — never
+Azure SQL Database, which has no local/offline edition. Azure SQL
+Database is only used once a live/staging environment exists. See
+[ADR-0005](../Lakbay.Docs/docs/adr/ADR-0005-local-sql-server-not-azure-sql.md).
+
 ## End of session
 
 Update `../Lakbay.Docs/docs/04_TASKS.md` and append an entry to
