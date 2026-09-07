@@ -13,5 +13,9 @@
     <PackageVersion Include="Umbraco.Cms" Version="18.1.1" />
     <PackageVersion Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="18.1.1" />
     <PackageVersion Include="Microsoft.ICU.ICU4C.Runtime" Version="$(UmbracoAppLocalIcuVersion)" />
+    <!-- Matches Lakbay.AvailabilityApi.Sync's Microsoft.Azure.Functions.Worker.Extensions.ServiceBus
+         5.24.0, which itself depends on Azure.Messaging.ServiceBus 7.20.x — kept close so both
+         sides of the queue use compatible client versions. -->
+    <PackageVersion Include="Azure.Messaging.ServiceBus" Version="7.20.1" />
   </ItemGroup>
 </Project>
