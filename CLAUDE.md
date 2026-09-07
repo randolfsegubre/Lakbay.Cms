@@ -54,9 +54,10 @@ to place a block that renders as nothing on the live site.
 
 ## Local setup
 
-Not yet proven — Phase 0 is not complete. Once the Umbraco solution boots
-locally, the exact commands go in `Docs/DEVELOPER_HANDBOOK.md` (create
-that file the moment setup actually works, not from memory afterward).
+Proven working as of Phase 3 (2026-09-08) — see
+`../Lakbay.Docs/docs/07_MANUAL_SETUP_GUIDE.md` §4 for the exact commands
+(this repo has no separate `Docs/DEVELOPER_HANDBOOK.md`; the consolidated
+guide is the source of truth per that file's own stated convention).
 
 **Database:** SQL Server (Docker, Developer Edition) locally — never
 Azure SQL Database, which has no local/offline edition. Azure SQL
