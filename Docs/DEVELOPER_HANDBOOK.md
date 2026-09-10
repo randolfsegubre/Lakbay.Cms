@@ -43,35 +43,43 @@ the plan was written before checking, the same category of mistake as the
 original "MockApi" framing. Corrected here and being propagated back to
 `Lakbay.Docs` in the same session.
 
-## Still pending Docker (not installed on this machine as of 2026-09-06)
+## Proven working, 2026-09-08 — full local stack against a real database
+
+Docker Desktop finished installing after a machine restart, unblocking
+everything below in one pass:
 
 ```bash
-# 1. Docker Desktop must be installed and running first.
+# 1. .env already has a real local-only password (gitignored).
 
-# 2. Copy the env template and set a real local-only password:
-cp .env.example .env
-# edit .env, set DB_PASSWORD to something real (matches step 3 below)
-
-# 3. Start SQL Server:
+# 2. Start SQL Server:
 docker compose up -d
 # creates umbracoDb (this repo) and lakbayBookingDb (Lakbay.Booking) —
-# see Database/setup.sql. Same SQL Server *instance* for local-dev
-# convenience; still two fully separate databases (ADR-0003).
+# see Database/setup.sql. Confirmed healthy via
+# `docker inspect --format='{{.State.Health.Status}}' lakbay_sqlserver`.
 
-# 4. Point Lakbay.Cms.Web at it via .NET user-secrets — NOT appsettings —
-#    so the password never lands in a committed file:
+# 3. Connection string, via .NET user-secrets — NOT appsettings — so the
+#    password never lands in a committed file (already done, reusable):
 cd src/Lakbay.Cms.Web
 dotnet user-secrets set "ConnectionStrings:umbracoDbDSN" \
-  "Server=localhost,1433;Database=umbracoDb;User Id=sa;Password=<same DB_PASSWORD from .env>;TrustServerCertificate=true"
+  "Server=localhost,1433;Database=umbracoDb;User Id=sa;Password=<DB_PASSWORD from .env>;TrustServerCertificate=true"
 dotnet user-secrets set "ConnectionStrings:umbracoDbDSN_ProviderName" "Microsoft.Data.SqlClient"
 
-# 5. dotnet run again, complete the install wizard through the browser —
-#    this time it can actually create the schema.
+# 4. dotnet run — confirmed listening on both configured ports, backoffice
+#    module bundle loads clean, no exceptions in the log.
+dotnet run --project src/Lakbay.Cms.Web
 ```
 
 `dotnet user-secrets init` has already been run for
 `Lakbay.Cms.Web` (added a `<UserSecretsId>` GUID to the `.csproj` — safe
 to commit, it's just a reference, not the secret itself).
+
+**What's still manual, on purpose:** the install wizard's admin-account
+step (email, password, name) needs a real choice from whoever owns this
+CMS instance — not something to script or invent a value for. Open
+`https://localhost:44330/umbraco` (or the http port from the console
+output — check `launchSettings.json` if the port ever changes) in a
+browser and complete it there. That finishes Phase 0's "does it boot"
+bar into Phase 3's actual starting point.
 
 ## Adding a new Document Type / content tree — worked walkthrough (once Phase 3 starts)
 

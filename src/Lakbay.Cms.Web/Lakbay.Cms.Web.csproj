@@ -10,6 +10,9 @@
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" />
     <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" />
+    <!-- ADR-0013: publishes catalog sync events to the emulator/real
+         Service Bus queue Lakbay.AvailabilityApi.Sync consumes. -->
+    <PackageReference Include="Azure.Messaging.ServiceBus" />
   </ItemGroup>
 
   <PropertyGroup>
